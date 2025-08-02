@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" class="%sveltekit.theme%">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+		
+		<!-- Mobile-first viewport -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+		
+		<!-- PWA Meta Tags -->
+		<meta name="application-name" content="ChainForge" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+		<meta name="apple-mobile-web-app-title" content="ChainForge" />
+		<meta name="description" content="Goal tracking with group accountability and penalty carry-over system" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="mobile-web-app-capable" content="yes" />
+		<meta name="theme-color" content="#3b82f6" />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://chainforge.app/" />
+		<meta property="og:title" content="ChainForge - Goal Tracking with Accountability" />
+		<meta property="og:description" content="Achieve your goals through personal discipline and group accountability. Join groups, track progress, and experience real peer pressure through our penalty carry-over system." />
+		<meta property="og:image" content="%sveltekit.assets%/og-image.png" />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content="https://chainforge.app/" />
+		<meta property="twitter:title" content="ChainForge - Goal Tracking with Accountability" />
+		<meta property="twitter:description" content="Achieve your goals through personal discipline and group accountability." />
+		<meta property="twitter:image" content="%sveltekit.assets%/twitter-image.png" />
+
+		<!-- Apple Touch Icons -->
+		<link rel="apple-touch-icon" href="%sveltekit.assets%/icons/apple-touch-icon.png" />
+		<link rel="apple-touch-icon" sizes="152x152" href="%sveltekit.assets%/icons/apple-touch-icon-152x152.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="%sveltekit.assets%/icons/apple-touch-icon-180x180.png" />
+		<link rel="apple-touch-icon" sizes="167x167" href="%sveltekit.assets%/icons/apple-touch-icon-167x167.png" />
+
+		<!-- Favicon variations -->
+		<link rel="icon" type="image/png" sizes="32x32" href="%sveltekit.assets%/icons/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="%sveltekit.assets%/icons/favicon-16x16.png" />
+		<link rel="mask-icon" href="%sveltekit.assets%/icons/safari-pinned-tab.svg" color="#3b82f6" />
+
+		<!-- PWA Manifest -->
+		<link rel="manifest" href="%sveltekit.assets%/manifest.json" />
+
+		<!-- Splash screens for iOS -->
+		<link rel="apple-touch-startup-image" href="%sveltekit.assets%/splashscreens/apple-splash-2048-2732.png" sizes="2048x2732" />
+		<link rel="apple-touch-startup-image" href="%sveltekit.assets%/splashscreens/apple-splash-1668-2224.png" sizes="1668x2224" />
+		<link rel="apple-touch-startup-image" href="%sveltekit.assets%/splashscreens/apple-splash-1536-2048.png" sizes="1536x2048" />
+		<link rel="apple-touch-startup-image" href="%sveltekit.assets%/splashscreens/apple-splash-1125-2436.png" sizes="1125x2436" />
+		<link rel="apple-touch-startup-image" href="%sveltekit.assets%/splashscreens/apple-splash-1242-2208.png" sizes="1242x2208" />
+		<link rel="apple-touch-startup-image" href="%sveltekit.assets%/splashscreens/apple-splash-750-1334.png" sizes="750x1334" />
+		<link rel="apple-touch-startup-image" href="%sveltekit.assets%/splashscreens/apple-splash-640-1136.png" sizes="640x1136" />
+
+		<!-- Preconnect to external domains -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		
+		<!-- Google Fonts -->
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+
+		<!-- CSS Variables for theming -->
+		<style>
+			:root {
+				--safe-area-inset-top: env(safe-area-inset-top);
+				--safe-area-inset-right: env(safe-area-inset-right);
+				--safe-area-inset-bottom: env(safe-area-inset-bottom);
+				--safe-area-inset-left: env(safe-area-inset-left);
+			}
+
+			/* Prevent zoom on iOS */
+			input[type="text"],
+			input[type="email"],
+			input[type="password"],
+			input[type="number"],
+			input[type="tel"],
+			input[type="url"],
+			input[type="search"],
+			textarea,
+			select {
+				font-size: 16px;
+			}
+
+			/* Smooth scrolling */
+			html {
+				scroll-behavior: smooth;
+			}
+
+			/* Prevent overscroll */
+			body {
+				overscroll-behavior: none;
+				-webkit-overflow-scrolling: touch;
+			}
+
+			/* Loading state */
+			.loading {
+				background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+				background-size: 200% 100%;
+				animation: loading 1.5s infinite;
+			}
+
+			@keyframes loading {
+				0% {
+					background-position: 200% 0;
+				}
+				100% {
+					background-position: -200% 0;
+				}
+			}
+
+			/* Dark mode support */
+			@media (prefers-color-scheme: dark) {
+				:root {
+					color-scheme: dark;
+				}
+			}
+		</style>
+
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover" class="font-sans antialiased bg-gray-50 text-gray-900 safe-top safe-bottom">
+		<!-- PWA install prompt will be handled by JavaScript -->
+		<div id="pwa-install-prompt" class="hidden"></div>
+		
+		<!-- App content -->
+		<div style="display: contents">%sveltekit.body%</div>
+
+		<!-- Service Worker registration -->
+		<script>
+			if ('serviceWorker' in navigator) {
+				window.addEventListener('load', () => {
+					navigator.serviceWorker.register('/service-worker.js')
+						.then((registration) => {
+							console.log('SW registered: ', registration);
+						})
+						.catch((registrationError) => {
+							console.log('SW registration failed: ', registrationError);
+						});
+				});
+			}
+
+			// Prevent context menu on long press for mobile
+			window.addEventListener('contextmenu', (e) => {
+				if (window.innerWidth <= 768) {
+					e.preventDefault();
+				}
+			});
+
+			// Disable zoom on double tap for iOS
+			let lastTouchEnd = 0;
+			document.addEventListener('touchend', (event) => {
+				const now = (new Date()).getTime();
+				if (now - lastTouchEnd <= 300) {
+					event.preventDefault();
+				}
+				lastTouchEnd = now;
+			}, false);
+
+			// Handle viewport height changes on mobile (keyboard, etc.)
+			const setVH = () => {
+				const vh = window.innerHeight * 0.01;
+				document.documentElement.style.setProperty('--vh', `${vh}px`);
+			};
+			setVH();
+			window.addEventListener('resize', setVH);
+			window.addEventListener('orientationchange', setVH);
+		</script>
+	</body>
+</html>
