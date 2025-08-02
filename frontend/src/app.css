@@ -1,0 +1,311 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* ChainForge Custom Styles */
+
+/* Base styles for better mobile experience */
+@layer base {
+	html {
+		font-family: 'Inter', system-ui, sans-serif;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-rendering: optimizeLegibility;
+	}
+	
+	body {
+		@apply text-gray-900 bg-gray-50;
+		/* Prevent rubber band scrolling on iOS */
+		overscroll-behavior: none;
+		/* Improve scroll performance */
+		-webkit-overflow-scrolling: touch;
+	}
+	
+	/* Ensure minimum touch target sizes */
+	button, 
+	[role="button"], 
+	input[type="submit"], 
+	input[type="button"] {
+		min-height: 44px;
+		min-width: 44px;
+		touch-action: manipulation;
+	}
+	
+	/* Improve form controls for mobile */
+	input, 
+	textarea, 
+	select {
+		@apply text-base; /* Prevent zoom on iOS */
+		border-radius: 8px;
+	}
+	
+	/* Better focus states for accessibility */
+	*:focus-visible {
+		@apply outline-none ring-2 ring-primary-500 ring-offset-2;
+	}
+}
+
+/* Component styles */
+@layer components {
+	/* Loading spinner */
+	.spinner {
+		@apply inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin;
+	}
+	
+	/* Mobile-optimized cards */
+	.card {
+		@apply bg-white rounded-lg shadow-mobile border border-gray-200;
+	}
+	
+	.card-hover {
+		@apply transition-all duration-200 hover:shadow-mobile-lg hover:border-gray-300;
+	}
+	
+	/* Progress bars */
+	.progress-bar {
+		@apply w-full bg-gray-200 rounded-full h-2 overflow-hidden;
+	}
+	
+	.progress-fill {
+		@apply h-full bg-gradient-to-r from-primary-500 to-primary-600 rounded-full transition-all duration-500 ease-out;
+	}
+	
+	/* Mobile navigation styles */
+	.nav-item {
+		@apply flex flex-col items-center justify-center p-2 text-xs font-medium transition-colors duration-200;
+	}
+	
+	.nav-item-active {
+		@apply text-primary-600;
+	}
+	
+	.nav-item-inactive {
+		@apply text-gray-400;
+	}
+	
+	/* Swipe indicators */
+	.swipe-indicator {
+		@apply absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 animate-swipe-indicator;
+	}
+	
+	/* Achievement badges */
+	.badge {
+		@apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+	}
+	
+	.badge-success {
+		@apply bg-success-100 text-success-800;
+	}
+	
+	.badge-warning {
+		@apply bg-warning-100 text-warning-800;
+	}
+	
+	.badge-error {
+		@apply bg-error-100 text-error-800;
+	}
+	
+	.badge-primary {
+		@apply bg-primary-100 text-primary-800;
+	}
+	
+	/* Goal category indicators */
+	.category-fitness { @apply bg-green-500; }
+	.category-health { @apply bg-blue-500; }
+	.category-education { @apply bg-purple-500; }
+	.category-career { @apply bg-indigo-500; }
+	.category-finance { @apply bg-yellow-500; }
+	.category-hobbies { @apply bg-pink-500; }
+	.category-relationship { @apply bg-red-500; }
+	.category-personal { @apply bg-gray-500; }
+	.category-other { @apply bg-gray-400; }
+}
+
+/* Utility classes */
+@layer utilities {
+	/* Safe area utilities for iOS */
+	.safe-top {
+		padding-top: env(safe-area-inset-top);
+	}
+	
+	.safe-bottom {
+		padding-bottom: env(safe-area-inset-bottom);
+	}
+	
+	.safe-left {
+		padding-left: env(safe-area-inset-left);
+	}
+	
+	.safe-right {
+		padding-right: env(safe-area-inset-right);
+	}
+	
+	/* Touch action utilities */
+	.touch-pan-y {
+		touch-action: pan-y;
+	}
+	
+	.touch-pan-x {
+		touch-action: pan-x;
+	}
+	
+	.touch-manipulation {
+		touch-action: manipulation;
+	}
+	
+	/* Scrollbar hiding */
+	.scrollbar-hide {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+	
+	.scrollbar-hide::-webkit-scrollbar {
+		display: none;
+	}
+	
+	/* Text truncation with responsive behavior */
+	.text-truncate-mobile {
+		@apply truncate sm:whitespace-normal;
+	}
+	
+	/* Glassmorphism effects */
+	.glass {
+		@apply bg-white bg-opacity-80 backdrop-blur-sm border border-white border-opacity-20;
+	}
+	
+	.glass-dark {
+		@apply bg-gray-900 bg-opacity-80 backdrop-blur-sm border border-gray-700 border-opacity-20;
+	}
+}
+
+/* Animation keyframes */
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideInRight {
+	from {
+		transform: translateX(100%);
+	}
+	to {
+		transform: translateX(0);
+	}
+}
+
+@keyframes slideInLeft {
+	from {
+		transform: translateX(-100%);
+	}
+	to {
+		transform: translateX(0);
+	}
+}
+
+@keyframes bounceIn {
+	0% {
+		opacity: 0;
+		transform: scale(0.3);
+	}
+	50% {
+		opacity: 1;
+		transform: scale(1.05);
+	}
+	70% {
+		transform: scale(0.9);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+@keyframes pulse-gentle {
+	0%, 100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.7;
+	}
+}
+
+/* Mobile-specific media queries */
+@media (max-width: 768px) {
+	/* Optimize font sizes for mobile */
+	.text-responsive {
+		@apply text-sm;
+	}
+	
+	/* Reduce padding on mobile */
+	.p-responsive {
+		@apply p-4;
+	}
+	
+	/* Stack elements on mobile */
+	.flex-responsive {
+		@apply flex-col;
+	}
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+	.card {
+		@apply border-2 border-gray-400;
+	}
+	
+	.btn {
+		@apply border-2;
+	}
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+	:root {
+		color-scheme: dark;
+	}
+	
+	body {
+		@apply bg-gray-900 text-gray-100;
+	}
+	
+	.card {
+		@apply bg-gray-800 border-gray-700;
+	}
+	
+	.glass {
+		@apply bg-gray-800 bg-opacity-80 border-gray-600;
+	}
+}
+
+/* Print styles */
+@media print {
+	.no-print {
+		display: none !important;
+	}
+	
+	body {
+		@apply text-black bg-white;
+	}
+	
+	.card {
+		@apply border border-gray-300 shadow-none;
+	}
+}

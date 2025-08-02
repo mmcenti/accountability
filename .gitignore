@@ -1,0 +1,221 @@
+# ChainForge - Git Ignore File
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Backend (Go)
+# Binaries
+backend/bin/
+backend/tmp/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+backend/coverage.html
+backend/coverage.out
+
+# Go workspace file
+go.work
+
+# Air tmp files
+backend/tmp/
+
+# Database files
+backend/data/
+*.db
+*.sqlite
+*.sqlite3
+
+# Backend logs
+backend/logs/
+backend/*.log
+
+# Frontend (Node.js)
+frontend/node_modules/
+frontend/.svelte-kit/
+frontend/build/
+frontend/dist/
+frontend/.vercel/
+frontend/.netlify/
+
+# Frontend logs
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/lerna-debug.log*
+
+# Runtime data
+frontend/pids
+frontend/*.pid
+frontend/*.seed
+frontend/*.pid.lock
+
+# Coverage directory used by tools like istanbul
+frontend/coverage/
+frontend/.nyc_output
+
+# Frontend environment
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+# Svelte
+frontend/.svelte-kit
+
+# Vite
+frontend/vite.config.js.timestamp-*
+frontend/vite.config.ts.timestamp-*
+
+# Testing
+frontend/test-results/
+frontend/playwright-report/
+frontend/playwright/.cache/
+
+# Docker
+.dockerignore
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Logs
+logs/
+*.log
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories
+node_modules/
+vendor/
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+.env.test
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# next.js build output
+.next
+
+# nuxt.js build output
+.nuxt
+
+# rollup.js default build output
+dist/
+
+# Uncomment the public line in if your project uses Gatsby
+# https://nextjs.org/blog/next-9-1#public-directory-support
+# public
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# Temporary folders
+tmp/
+temp/
+
+# Backup files
+*.backup
+backups/
+
+# Local development
+local/
+dev/
+
+# SSL certificates
+*.pem
+*.key
+*.crt
+
+# Compiled CSS (if using preprocessors)
+*.css.map
+
+# Source maps
+*.map
+
+# Documentation
+docs/build/
+
+# MacOS
+.AppleDouble
+.LSOverride
+
+# Windows
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# Archives
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Secrets and keys
+secrets/
+*.secret
+*.private
+
+# Monitoring and profiling
+*.prof
+*.pprof
+
+# CI/CD
+.github/workflows/secrets/
+
+# Production artifacts
+*.min.js
+*.min.css
