@@ -57,9 +57,11 @@ export default defineConfig({
 		include: [
 			'chart.js',
 			'date-fns',
-			'hammer.js',
 			'sortablejs',
-			'uuid'
+			'uuid',
+			'lucide-svelte',
+			'clsx',
+			'tailwind-merge'
 		]
 	},
 

@@ -113,6 +113,13 @@
 			>
 				Sign In
 			</a>
+			
+			<a 
+				href="/demo"
+				class="text-sm text-primary-200 hover:text-white underline underline-offset-4 transition-colors duration-200"
+			>
+				View Component Demo →
+			</a>
 		</div>
 
 		<!-- Social proof -->
