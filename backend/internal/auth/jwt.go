@@ -148,7 +148,7 @@ func (tm *TokenManager) validateToken(tokenString string, expectedType TokenType
 	}
 
 	// Validate audience
-	if !claims.VerifyAudience("chainforge", true) {
+	if len(claims.Audience) > 0 && claims.Audience[0] != "chainforge" {
 		return nil, fmt.Errorf("invalid audience")
 	}
 

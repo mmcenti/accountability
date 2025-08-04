@@ -15,11 +15,11 @@
 	$: currentPath = $page.url.pathname;
 
 	// Routes that don't need authentication
-	const publicRoutes = ['/', '/login', '/register', '/forgot-password', '/reset-password'];
+	const publicRoutes = ['/', '/login', '/register', '/forgot-password', '/reset-password', '/demo'];
 	$: isPublicRoute = publicRoutes.includes(currentPath);
 
 	// Routes that should hide bottom navigation
-	const hideNavRoutes = ['/login', '/register', '/onboarding'];
+	const hideNavRoutes = ['/login', '/register', '/onboarding', '/demo'];
 	$: shouldShowNav = isAuthenticated && !hideNavRoutes.some(route => currentPath.startsWith(route));
 
 	onMount(() => {

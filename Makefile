@@ -31,7 +31,7 @@ install:
 	@echo "$(YELLOW)Installing Go dependencies...$(RESET)"
 	cd $(BACKEND_DIR) && go mod download && go mod tidy
 	@echo "$(YELLOW)Installing Node.js dependencies...$(RESET)"
-	cd $(FRONTEND_DIR) && npm ci
+	cd $(FRONTEND_DIR) && npm ci || (echo "$(YELLOW)npm ci failed, trying npm install...$(RESET)" && npm install)
 	@echo "$(GREEN)✓ All dependencies installed$(RESET)"
 
 ## setup: Complete project setup (install + database + env)
