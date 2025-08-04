@@ -31,6 +31,12 @@
                             Trial Active
                         </span>
                     {/if}
+                    <Link 
+                        href="/subscription" 
+                        class="text-sm text-gray-600 hover:text-gray-900"
+                    >
+                        Subscription
+                    </Link>
                     <button 
                         on:click={logout}
                         class="text-sm text-gray-500 hover:text-gray-700"
