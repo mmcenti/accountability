@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -74,15 +73,8 @@ class AuthController extends Controller
             'timezone' => $request->timezone ?? 'UTC',
         ]);
 
-        // Create initial free subscription with trial
-        Subscription::create([
-            'id' => Str::uuid(),
-            'user_id' => $user->id,
-            'plan' => 'free',
-            'status' => 'trial',
-            'trial_start_date' => now(),
-            'trial_end_date' => now()->addDays(30),
-        ]);
+        // Note: No subscription is created at registration
+        // Users start with free access and can start trial when ready
 
         Auth::login($user);
 

@@ -58,16 +58,14 @@ Route::middleware('auth')->group(function () {
     // Subscription routes
     Route::prefix('subscription')->name('subscription.')->group(function () {
         Route::get('/', [SubscriptionController::class, 'index'])->name('index');
-        Route::post('/trial', [SubscriptionController::class, 'startTrial'])->name('trial');
-        Route::post('/upgrade', [SubscriptionController::class, 'upgradeToPremium'])->name('upgrade');
+        Route::post('/free-trial', [SubscriptionController::class, 'startFreeTrial'])->name('free-trial');
+        Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscribe');
         Route::post('/cancel', [SubscriptionController::class, 'cancel'])->name('cancel');
-        Route::post('/reactivate', [SubscriptionController::class, 'reactivate'])->name('reactivate');
-        
-        Route::post('/payment-methods', [SubscriptionController::class, 'addPaymentMethod'])->name('payment-methods.store');
-        Route::put('/payment-methods/{paymentMethod}/default', [SubscriptionController::class, 'setDefaultPaymentMethod'])->name('payment-methods.default');
-        Route::delete('/payment-methods/{paymentMethod}', [SubscriptionController::class, 'removePaymentMethod'])->name('payment-methods.destroy');
-        
-        Route::get('/billing', [SubscriptionController::class, 'billingHistory'])->name('billing');
-        Route::get('/invoices/{invoice}/download', [SubscriptionController::class, 'downloadInvoice'])->name('invoices.download');
+        Route::post('/resume', [SubscriptionController::class, 'resume'])->name('resume');
+        Route::post('/payment-method', [SubscriptionController::class, 'updatePaymentMethod'])->name('payment-method');
+        Route::get('/billing-portal', [SubscriptionController::class, 'billingPortal'])->name('billing-portal');
     });
 });
+
+// Stripe Webhook (outside auth middleware)
+Route::post('/stripe/webhook', [SubscriptionController::class, 'handleWebhook'])->name('cashier.webhook');

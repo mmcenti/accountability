@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Laravel\Cashier\Billable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -70,13 +71,7 @@ class User extends Authenticatable
         return $this->hasMany(Goal::class);
     }
 
-    /**
-     * Get the user's subscription.
-     */
-    public function subscription(): HasOne
-    {
-        return $this->hasOne(Subscription::class);
-    }
+
 
     /**
      * Get the groups created by this user.
@@ -126,5 +121,36 @@ class User extends Authenticatable
     public function auditLogs(): HasMany
     {
         return $this->hasMany(AuditLog::class);
+    }
+
+    /**
+     * Check if user has premium features.
+     */
+    public function hasPremiumFeatures(): bool
+    {
+        // Check if user is on trial (30 days from registration)
+        if ($this->created_at->isAfter(now()->subDays(30))) {
+            return true;
+        }
+
+        // Check if user has active subscription
+        return $this->subscribed('default');
+    }
+
+    /**
+     * Check if user is on free trial period.
+     */
+    public function isOnFreeTrial(): bool
+    {
+        return !$this->hasEverSubscribed() && 
+               $this->created_at->isAfter(now()->subDays(30));
+    }
+
+    /**
+     * Get trial end date.
+     */
+    public function getTrialEndDate()
+    {
+        return $this->created_at->addDays(30);
     }
 }
